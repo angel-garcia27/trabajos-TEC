@@ -1,0 +1,64 @@
+/**
+ * @(#)Boton.java
+ *
+ * Boton application
+ *
+ * @author 
+ * @version 1.00 2020/1/31
+ */
+ import javax.swing.*;
+ import java.awt.*;
+ 
+public class Boton extends JFrame implements ActionListener {
+	JButton Boton;
+	JLabel TextEvent;
+	
+	public Boton (){
+		setLayout(null);
+		Boton=new JButton("Salir");
+		Boton.setBounds(100,150,100,30);
+		Boton.addActionListener(this);
+		add(Boton);
+		TextEvent=new JLabel ("Mi nombre es :"+ "Angel Emmanuel Garcia Becerra");
+		TextEvent.setBounds(30,50,500,30);
+		add(TextEvent);
+		TextEvent=new JLabel ("Tengo 19 años");
+		TextEvent.setBounds(30,60,500,40);
+		add(TextEvent);
+		TextEvent=new JLabel ("Vivo en: Puerto Angel");
+		TextEvent.setBounds(30,70,500,30);
+		add(TextEvent);
+		TextEvent=new JLabel ("Carrera: Ing. en Sistemas Computacionales");
+		TextEvent.setBounds(30,80,500,40);
+		add(TextEvent);
+		TextEvent=new JLabel ("Mi numero telefonico es: 9711797922");
+		TextEvent.setBounds(30,90,500,50);
+		add(TextEvent);
+		TextEvent=new JLabel ("Genero: Masculino");
+		TextEvent.setBounds(30,100,500,60);
+		add(TextEvent);
+	}
+    
+    
+    public void actionPerformed(ActionEvent e){
+    		if (e.getSource()==Boton){
+    			try{
+    				Thread.sleep(1000);
+    				System.exit(0);
+    			} catch(Exception excep){
+    				System.exit(0);
+    			}
+    		}
+    }
+    public static void main(String[] args) {
+    	
+    	Boton ventana=new Boton();
+    	ventana.setBounds(500,250,500,250);
+    	ventana.setVisible(true);
+    	ventana.setResizable(false);
+    
+    	// TODO, add your application code
+    	System.out.println("Hello World!");
+    	
+    }
+}
