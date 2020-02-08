@@ -1,0 +1,122 @@
+# trabajos-TEC
+
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class CajeroPrueba extends JFrame implements ActionListener
+{
+	int P, R, D, Divisible_100=100;
+	int dinero [] = new int [4];
+	int i=0;
+
+JButton boton1, boton2, boton3;
+
+public static void main (String [] args)
+	{
+    	
+    	String pass="****";
+		do
+		{
+			pass=JOptionPane.showInputDialog("Por favor ingrese su NIP: ");
+			if(pass.equals("1234"))
+				JOptionPane.showMessageDialog(null, "Su NIP Es Correcto");
+			else
+				JOptionPane.showMessageDialog(null, "Lo siento su NIP es Incorrecto");
+		}while(pass.equals("1234")==false);
+		
+		new CajeroPrueba();
+    }
+ public CajeroPrueba()
+    	{
+		    	setTitle("CAJERO");
+				setSize(300, 300);
+				setLocationRelativeTo(null);
+				setLayout(null);
+				setVisible(true);
+				
+				boton1 = new JButton();
+				boton1.setText("Depositar");
+				boton1.setBounds(100, 80, 100, 50);
+				getContentPane().add(boton1);
+				boton1.addActionListener(this);
+				
+				boton2 = new JButton();
+				boton2.setText("Retirar");
+				boton2.setBounds(100, 140, 100, 50);
+				getContentPane().add(boton2);
+				boton2.addActionListener(this);
+				
+				boton3 = new JButton();
+				boton3.setText("Consultar");
+				boton3.setBounds(100, 200, 100, 50);
+				getContentPane().add(boton3);
+				boton3.addActionListener(this);
+    	
+    }
+    public void actionPerformed (ActionEvent evento)
+    {
+    	if (evento.getSource() ==boton1)
+    	{
+    		//Deposito
+    		P = Integer.parseInt(JOptionPane.showInputDialog(null, "¿De cuanto sera su deposito?: "));
+    		//Deposito = a
+    		if(P%Divisible_100==0){
+    			D = P;
+    			JOptionPane.showMessageDialog(null, "Su deposito se ha realizado correctamente");
+    		} else
+    			JOptionPane.showMessageDialog(null, "Lo sentimos solo aceptamos multiplos de 100");
+    		
+    	}
+    		if(evento.getSource()==boton2)
+				{
+					//Retirar
+					R = Integer.parseInt(JOptionPane.showInputDialog(null, "¿Cuanto Desea Retirar?:  "));
+					
+					if(R<=5000 && R<=D && R%Divisible_100==0){
+						D = P-R;
+						JOptionPane.showMessageDialog(null, "Retiro realizado correctamente");
+						
+						while(D>0){
+						while(D-1000>=0){
+							D=D-1000;
+							dinero[0]++;
+						}
+						while(D-500>=0){
+							D=D-500;
+							dinero[1]++;
+						}
+						while(D-200>=0){
+							D=D-200;
+							dinero[2]++;
+						}
+						while(D-100>=0){
+							D=D-100;
+							dinero[3]++;
+						}
+					}
+					for(i=0;i<3;i++){
+						if(i==0)
+							JOptionPane.showMessageDialog(null,"Billetes de 1000: "+dinero[i]);
+						if(i==1)
+							JOptionPane.showMessageDialog(null, "Billetes de 500: "+dinero[i]);
+						if(i==2)
+							JOptionPane.showMessageDialog(null, "Billetes de 200: "+dinero[i]);
+						if(i==3)
+							JOptionPane.showMessageDialog(null, "Billetes de 100: "+dinero[i]);
+						}
+						
+					}else
+						JOptionPane.showMessageDialog(null, "Lo sentimos usted no puede realizar esta transaccion");
+				}
+			
+				if(evento.getSource()==boton3)
+				{
+					//Consultar
+					JOptionPane.showMessageDialog(null, "Saldo Disponible: "+D);
+				}
+
+		}
+    
+}
